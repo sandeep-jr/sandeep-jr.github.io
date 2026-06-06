@@ -41,7 +41,7 @@ const meta = buildMeta({ title, description, path: Astro.url.pathname, ogId });
   <body class="bg-surface text-ink">
     <header class="sticky top-0 z-50 border-b border-hair bg-surface/80 backdrop-blur">
       <div class="relative mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="/" class="font-serif text-lg tracking-tight text-ink">{site.shortName}</a>
+        <a href="/" class="font-serif text-base tracking-tight text-ink sm:text-lg">{site.name}</a>
         <div class="flex items-center gap-2">
           <Nav pathname={Astro.url.pathname} client:load />
           <ThemeToggle client:load />

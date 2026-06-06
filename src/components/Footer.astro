@@ -4,9 +4,11 @@ import SocialLinks from './SocialLinks.astro';
 ---
 <footer class="mt-24 border-t border-hair">
   <div class="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-12 md:flex-row md:items-center md:justify-between">
-    <div>
+    <div class="max-w-md">
       <p class="font-serif text-lg text-ink">{site.name}</p>
-      <p class="text-sm text-muted">Built with craft.</p>
+      <p class="mt-1 font-serif text-sm italic leading-relaxed text-muted">
+        “Building a more human world — where technology, creativity, and compassion bring people closer together, and where the change I hope to see begins with how I live each day.”
+      </p>
     </div>
     <SocialLinks />
   </div>
