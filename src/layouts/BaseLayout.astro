@@ -1,0 +1,55 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+import { site } from '../config/site';
+import { buildMeta, type MetaInput } from '../lib/seo';
+import Nav from '../components/react/Nav.tsx';
+import ThemeToggle from '../components/react/ThemeToggle.tsx';
+import Footer from '../components/Footer.astro';
+
+interface Props extends Omit<MetaInput, 'path'> {}
+const { title, description, ogId } = Astro.props;
+const meta = buildMeta({ title, description, path: Astro.url.pathname, ogId });
+---
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={meta.canonical} />
+    <meta property="og:image" content={meta.ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.description} />
+    <meta name="twitter:image" content={meta.ogImage} />
+    <!-- Apply stored theme before paint to avoid flash -->
+    <script is:inline>
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.add('light');
+      }
+    </script>
+    <ClientRouter />
+  </head>
+  <body class="bg-surface text-ink">
+    <header class="sticky top-0 z-50 border-b border-hair bg-surface/80 backdrop-blur">
+      <div class="relative mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <a href="/" class="font-serif text-lg tracking-tight text-ink">{site.shortName}</a>
+        <div class="flex items-center gap-2">
+          <Nav pathname={Astro.url.pathname} client:load />
+          <ThemeToggle client:load />
+        </div>
+      </div>
+    </header>
+    <main class="mx-auto max-w-5xl px-6 py-16">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

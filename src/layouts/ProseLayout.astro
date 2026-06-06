@@ -1,0 +1,32 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogId?: string;
+  date?: Date;
+  backHref: string;
+  backLabel: string;
+}
+const { title, description, ogId, date, backHref, backLabel } = Astro.props;
+---
+<BaseLayout title={title} description={description} ogId={ogId}>
+  <article>
+    <a href={backHref} class="text-sm text-muted hover:text-accent">← {backLabel}</a>
+    <header class="mx-auto mt-6 max-w-2xl">
+      <h1 class="font-sans text-4xl font-semibold tracking-tight text-ink">{title}</h1>
+      {date && (
+        <p class="mt-2 text-sm text-muted">
+          {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+      )}
+    </header>
+    <div class="mt-10">
+      <Prose>
+        <slot />
+      </Prose>
+    </div>
+  </article>
+</BaseLayout>
