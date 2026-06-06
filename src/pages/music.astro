@@ -1,14 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Reveal from '../components/react/Reveal.tsx';
-import { music } from '../data/music';
+import { music, type MusicPiece } from '../data/music';
+const pieces = music.pieces as MusicPiece[];
 ---
 <BaseLayout title="Music" description={music.intro} ogId="music">
   <h1 class="font-serif text-4xl text-ink">Music</h1>
   <p class="mt-4 max-w-3xl text-lg text-muted">{music.intro}</p>
 
   <section class="mt-14 grid gap-6 md:grid-cols-2">
-    {music.pieces.map((p, i) => (
+    {pieces.map((p, i) => (
       <Reveal client:load delay={i * 0.05}>
         <article class="rounded-2xl border border-hair bg-elev p-6">
           <h3 class="font-serif text-xl text-ink">{p.title}</h3>
