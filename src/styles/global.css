@@ -1,1 +1,64 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/fraunces";
+
+/* Dark-first: tokens default to dark; `.light` on <html> overrides. */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces Variable", ui-serif, Georgia, serif;
+}
+
+:root {
+  /* warm near-black, not pure #000 */
+  --bg: 24 22 20;          /* #181614 */
+  --bg-elev: 32 29 26;     /* #201d1a */
+  --ink: 238 234 228;      /* warm off-white */
+  --ink-muted: 165 158 148;
+  --border: 60 55 50;
+  --accent: 224 168 96;    /* warm amber glow */
+  --accent-ink: 24 22 20;
+}
+
+:root.light {
+  --bg: 250 248 244;
+  --bg-elev: 255 255 255;
+  --ink: 28 26 24;
+  --ink-muted: 96 90 84;
+  --border: 224 218 210;
+  --accent: 176 118 40;
+  --accent-ink: 255 255 255;
+}
+
+@layer base {
+  html {
+    background-color: rgb(var(--bg));
+    color: rgb(var(--ink));
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    min-height: 100dvh;
+  }
+  ::selection {
+    background-color: rgb(var(--accent) / 0.3);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Convenience semantic utilities */
+@layer utilities {
+  .bg-surface { background-color: rgb(var(--bg)); }
+  .bg-elev { background-color: rgb(var(--bg-elev)); }
+  .text-ink { color: rgb(var(--ink)); }
+  .text-muted { color: rgb(var(--ink-muted)); }
+  .border-hair { border-color: rgb(var(--border)); }
+  .text-accent { color: rgb(var(--accent)); }
+  .bg-accent { background-color: rgb(var(--accent)); }
+}
