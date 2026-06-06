@@ -17,8 +17,8 @@ export const { getStaticPaths, GET } = await OGImageRoute({
   getImageOptions: (_path, page) => ({
     title: page.title,
     description: page.description,
-    bgGradient: [[24, 22, 20]],
-    border: { color: [224, 168, 96], width: 8, side: 'inline-start' },
+    bgGradient: [[10, 10, 10]],
+    border: { color: [227, 25, 55], width: 8, side: 'inline-start' },
     padding: 60,
   }),
 });

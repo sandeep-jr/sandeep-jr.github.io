@@ -9,23 +9,23 @@
 }
 
 :root {
-  /* warm near-black, not pure #000 */
-  --bg: 24 22 20;          /* #181614 */
-  --bg-elev: 32 29 26;     /* #201d1a */
-  --ink: 238 234 228;      /* warm off-white */
-  --ink-muted: 165 158 148;
-  --border: 60 55 50;
-  --accent: 224 168 96;    /* warm amber glow */
-  --accent-ink: 24 22 20;
+  /* super-black, Spotify-style */
+  --bg: 10 10 10;          /* #0a0a0a */
+  --bg-elev: 24 24 24;     /* #181818 */
+  --ink: 242 242 242;      /* near-white */
+  --ink-muted: 163 163 163;/* #a3a3a3 */
+  --border: 38 38 38;      /* #262626 */
+  --accent: 227 25 55;     /* Tesla red #e31937 */
+  --accent-ink: 255 255 255;
 }
 
 :root.light {
-  --bg: 250 248 244;
+  --bg: 250 250 250;
   --bg-elev: 255 255 255;
-  --ink: 28 26 24;
-  --ink-muted: 96 90 84;
-  --border: 224 218 210;
-  --accent: 176 118 40;
+  --ink: 23 23 23;
+  --ink-muted: 90 90 90;
+  --border: 226 226 226;
+  --accent: 198 18 42;     /* deeper red for contrast on white */
   --accent-ink: 255 255 255;
 }
 
