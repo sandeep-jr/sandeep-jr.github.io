@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest run"
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.2",
@@ -19,8 +20,13 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "astro": "^6.4.4",
+    "clsx": "^2.1.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.8"
   }
 }
