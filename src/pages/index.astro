@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+import FacetCard from '../components/FacetCard.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import Reveal from '../components/react/Reveal.tsx';
+
+const facets = [
+  { title: 'Work', href: '/work', blurb: 'Platforms in fintech, fraud, and money movement at scale.' },
+  { title: 'Engineering', href: '/engineering', blurb: 'Distributed systems, cloud-native infra, and agentic AI.' },
+  { title: 'Music', href: '/music', blurb: 'Violin, guitar, piano — and music that brings people together.' },
+  { title: 'Blog', href: '/blog', blurb: 'Writing on engineering, leadership, and being human.' },
+  { title: 'Philosophy', href: '/philosophy', blurb: 'Technology, Buddhism, peace, and human dignity.' },
+];
+
+const quickFacts = [
+  'Staff Software Engineer building fintech and platform systems at Tesla.',
+  'Exploring product leadership, business strategy, and human-centered technology.',
+  'Learning music through violin, guitar, and piano.',
+  'Studying Buddhism, leadership, writing, engineering, and the humanities.',
+  'Building a stronger body, clearer mind, and more courageous life.',
+  'Writing about technology, creativity, peace, and human dignity.',
+];
+---
+<BaseLayout
+  title={site.name}
+  description={site.subline}
+  ogId="home"
+>
+  <section class="py-12 md:py-20">
+    <Reveal client:load>
+      <p class="text-sm uppercase tracking-widest text-accent">Sandeep J Ramanathan</p>
+      <h1 class="mt-4 max-w-3xl font-serif text-4xl leading-tight text-ink md:text-6xl">
+        {site.tagline}
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">{site.subline}</p>
+      <div class="mt-8"><SocialLinks /></div>
+    </Reveal>
+  </section>
+
+  <section class="border-t border-hair py-16">
+    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr]">
+      <Reveal client:load>
+        <div class="space-y-5 font-serif text-lg leading-relaxed text-ink">
+          <p>I'm a Staff Software Engineer, builder, musician, Buddhist practitioner, and lifelong learner driven by a simple belief: the things we create should help people feel more joyful, connected, capable, and alive.</p>
+          <p>My journey into technology began with a deep admiration for products that could move people emotionally. Growing up, I struggled academically and often questioned my own worth. But seeing how companies like Apple fused engineering, design, and humanity inspired me to pursue Electrical Engineering, entrepreneurship, and mathematics. That path eventually led me to Tesla, where I've spent years building and leading platforms across fintech, fraud, disbursements, payments, and large-scale backend systems.</p>
+          <p>At work, I care deeply about resilient architecture, platform thinking, technical excellence, and compassionate leadership. But I don't want my life to be defined by career alone. I'm also drawn to music, writing, philosophy, travel, fitness, adventure, and the lifelong pursuit of becoming a more courageous and expansive human being.</p>
+          <p>My Buddhist practice, rooted in the SGI tradition, has shaped the way I think about leadership, responsibility, and peace. It reminds me that every system, product, and decision ultimately comes back to people.</p>
+          <p>This site is a living portfolio of that journey: engineering, creativity, personal transformation, and the search for work that serves humanity.</p>
+        </div>
+      </Reveal>
+      <Reveal client:load delay={0.1}>
+        <aside class="rounded-2xl border border-hair bg-elev p-6">
+          <h2 class="text-sm uppercase tracking-widest text-muted">Currently</h2>
+          <ul class="mt-4 space-y-3 text-sm text-ink">
+            {quickFacts.map((f) => (
+              <li class="flex gap-2"><span class="text-accent">—</span><span>{f}</span></li>
+            ))}
+          </ul>
+        </aside>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="border-t border-hair py-16">
+    <h2 class="font-serif text-2xl text-ink">Choose a door</h2>
+    <p class="mt-2 text-muted">Every side of me has its own room. Walk into the one you're curious about.</p>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {facets.map((f) => <FacetCard {...f} />)}
+    </div>
+  </section>
+</BaseLayout>

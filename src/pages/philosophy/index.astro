@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Reveal from '../../components/react/Reveal.tsx';
+
+const essays = (await getCollection('philosophy', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const intro = "The questions that drive me are not only technical. I often think about what it means to live courageously, build responsibly, and create things that honor the dignity of life. I believe the systems we build reflect the people we are becoming.";
+---
+<BaseLayout title="Philosophy" description={intro} ogId="philosophy">
+  <h1 class="font-serif text-4xl text-ink">Philosophy</h1>
+  <p class="mt-4 max-w-2xl text-lg text-muted">{intro}</p>
+
+  <ul class="mt-12 space-y-6">
+    {essays.map((essay, i) => (
+      <Reveal client:load delay={i * 0.05}>
+        <li class="border-b border-hair pb-6">
+          <a href={`/philosophy/${essay.id}`} class="group block">
+            <h2 class="font-serif text-2xl text-ink group-hover:text-accent">{essay.data.title}</h2>
+            <p class="mt-2 text-muted">{essay.data.summary}</p>
+          </a>
+        </li>
+      </Reveal>
+    ))}
+  </ul>
+</BaseLayout>

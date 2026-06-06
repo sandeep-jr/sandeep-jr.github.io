@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Reveal from '../../components/react/Reveal.tsx';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const drafts = (await getCollection('blog', ({ data }) => data.draft));
+const intro = 'A living record of how I think, build, struggle, learn, and contribute — across engineering, leadership, music, Buddhism, and what it means to be human.';
+---
+<BaseLayout title="Blog" description={intro} ogId="blog">
+  <h1 class="font-serif text-4xl text-ink">Blog</h1>
+  <p class="mt-4 max-w-2xl text-lg text-muted">{intro}</p>
+
+  {posts.length > 0 ? (
+    <ul class="mt-12 space-y-6">
+      {posts.map((post, i) => (
+        <Reveal client:load delay={i * 0.05}>
+          <li class="border-b border-hair pb-6">
+            <a href={`/blog/${post.id}`} class="group block">
+              <h2 class="font-serif text-2xl text-ink group-hover:text-accent">{post.data.title}</h2>
+              <p class="mt-2 text-muted">{post.data.summary}</p>
+            </a>
+          </li>
+        </Reveal>
+      ))}
+    </ul>
+  ) : (
+    <p class="mt-12 rounded-2xl border border-hair bg-elev p-6 text-muted">
+      The first essays are being written. Here's what's on the way — check back soon.
+    </p>
+  )}
+
+  {drafts.length > 0 && (
+    <section class="mt-16">
+      <h2 class="text-sm uppercase tracking-widest text-muted">In the works</h2>
+      <ul class="mt-4 space-y-2 text-muted">
+        {drafts.map((d) => <li>{d.data.title}</li>)}
+      </ul>
+    </section>
+  )}
+</BaseLayout>

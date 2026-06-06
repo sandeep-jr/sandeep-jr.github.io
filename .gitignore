@@ -141,3 +141,6 @@ vite.config.ts.timestamp-*
 # Local OS and tooling
 .DS_Store
 .vite/
+
+# Astro generated types
+.astro/

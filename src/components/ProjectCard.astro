@@ -1,0 +1,21 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  description: string;
+  links: { label: string; href: string }[];
+}
+const { title, summary, description, links } = Astro.props;
+---
+<article class="rounded-2xl border border-hair bg-elev p-6 transition-colors hover:border-accent">
+  <h3 class="font-serif text-xl text-ink">{title}</h3>
+  <p class="mt-1 text-sm text-accent">{summary}</p>
+  <p class="mt-4 text-sm leading-relaxed text-muted">{description}</p>
+  {links.length > 0 && (
+    <ul class="mt-4 flex flex-wrap gap-3">
+      {links.map((l) => (
+        <li><a href={l.href} class="text-sm text-accent underline underline-offset-4">{l.label}</a></li>
+      ))}
+    </ul>
+  )}
+</article>

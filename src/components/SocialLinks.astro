@@ -1,0 +1,24 @@
+---
+import { site } from '../config/site';
+const labels: Record<string, string> = {
+  instagram: 'Instagram',
+  x: 'X',
+  linkedin: 'LinkedIn',
+  github: 'GitHub',
+  email: 'Email',
+};
+---
+<ul class="flex flex-wrap items-center gap-4">
+  {site.socials.map((s) => (
+    <li>
+      <a
+        href={s.href}
+        target={s.icon === 'email' ? undefined : '_blank'}
+        rel={s.icon === 'email' ? undefined : 'noopener noreferrer'}
+        class="text-sm text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
+      >
+        {labels[s.icon] ?? s.label}
+      </a>
+    </li>
+  ))}
+</ul>
