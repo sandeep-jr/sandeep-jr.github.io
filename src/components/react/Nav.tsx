@@ -30,6 +30,8 @@ export default function Nav({ pathname }: { pathname: string }) {
           <li key={item.href}>
             <a
               href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              onClick={() => setOpen(false)}
               className={cn(
                 'rounded-md px-3 py-2 text-sm transition-colors hover:text-ink',
                 isActive(item.href) ? 'text-accent' : 'text-muted',

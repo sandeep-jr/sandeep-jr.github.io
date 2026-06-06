@@ -13,18 +13,24 @@ const intro = 'A living record of how I think, build, struggle, learn, and contr
   <h1 class="font-serif text-4xl text-ink">Blog</h1>
   <p class="mt-4 max-w-2xl text-lg text-muted">{intro}</p>
 
-  <ul class="mt-12 space-y-6">
-    {posts.map((post, i) => (
-      <Reveal client:load delay={i * 0.05}>
-        <li class="border-b border-hair pb-6">
-          <a href={`/blog/${post.id}`} class="group block">
-            <h2 class="font-serif text-2xl text-ink group-hover:text-accent">{post.data.title}</h2>
-            <p class="mt-2 text-muted">{post.data.summary}</p>
-          </a>
-        </li>
-      </Reveal>
-    ))}
-  </ul>
+  {posts.length > 0 ? (
+    <ul class="mt-12 space-y-6">
+      {posts.map((post, i) => (
+        <Reveal client:load delay={i * 0.05}>
+          <li class="border-b border-hair pb-6">
+            <a href={`/blog/${post.id}`} class="group block">
+              <h2 class="font-serif text-2xl text-ink group-hover:text-accent">{post.data.title}</h2>
+              <p class="mt-2 text-muted">{post.data.summary}</p>
+            </a>
+          </li>
+        </Reveal>
+      ))}
+    </ul>
+  ) : (
+    <p class="mt-12 rounded-2xl border border-hair bg-elev p-6 text-muted">
+      The first essays are being written. Here's what's on the way — check back soon.
+    </p>
+  )}
 
   {drafts.length > 0 && (
     <section class="mt-16">

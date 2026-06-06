@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import type { ReactNode } from 'react';
 
 export default function Reveal({
@@ -8,6 +8,12 @@ export default function Reveal({
   children: ReactNode;
   delay?: number;
 }) {
+  const reduce = useReducedMotion();
+
+  if (reduce) {
+    return <div>{children}</div>;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
